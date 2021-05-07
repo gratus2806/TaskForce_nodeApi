@@ -105,7 +105,7 @@ app.use((err, req, res, next) => {
 });
 // ?connect to mongo db atlas
 mongoose.connect(process.env.MONGO_URL,
-{useNewUrlParser:true}
+{useNewUrlParser:true,useUnifiedTopology: true}
 ).then(()=>{
     console.log("connected to mongo db Atlas")
 }).catch(error=>{
@@ -114,6 +114,6 @@ mongoose.connect(process.env.MONGO_URL,
 
 
 app.listen(PORT,()=>{
-    console.log("server started at port",PORT)
+    logger.info(`Server started at port : ${process.env.PORT}`);
 })
 
