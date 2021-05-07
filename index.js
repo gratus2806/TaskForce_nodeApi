@@ -6,7 +6,7 @@ var cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 
 require('dotenv').config();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 63204;
 
 const cors = require('cors');
 app.use(cors());
@@ -114,6 +114,6 @@ mongoose.connect(process.env.MONGO_URL,
 
 
 app.listen(PORT,()=>{
-    logger.info(`Server started at port : ${process.env.PORT}`);
+    console.log(`Server started at port : ${process.env.PORT}`);
 })
 
