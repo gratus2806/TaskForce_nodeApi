@@ -104,7 +104,7 @@ app.use((err, req, res, next) => {
 
 });
 // ?connect to mongo db atlas
-mongoose.connect(process.env.MONGO_URL,
+mongoose.connect('mongodb+srv://Gratus2806:gratus2806@cluster0.4bkx2.mongodb.net/TaskForce?retryWrites=true&w=majority',
 {useNewUrlParser:true}
 ).then(()=>{
     console.log("connected to mongo db Atlas")
