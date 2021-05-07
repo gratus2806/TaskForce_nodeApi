@@ -6,7 +6,7 @@ var cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 
 require('dotenv').config();
-const PORT = process.env.PORT || 63204;
+const PORT = process.env.PORT || 3000;
 
 const cors = require('cors');
 app.use(cors());
@@ -104,7 +104,7 @@ app.use((err, req, res, next) => {
 
 });
 // ?connect to mongo db atlas
-mongoose.connect(process.env.MONGO_URL,
+mongoose.connect("mongodb+srv://Gratus2806:gratus2806@cluster0.4bkx2.mongodb.net/TaskForce?retryWrites=true&w=majority",
 {useNewUrlParser:true,useUnifiedTopology: true}
 ).then(()=>{
     console.log("connected to mongo db Atlas")
@@ -114,6 +114,7 @@ mongoose.connect(process.env.MONGO_URL,
 
 
 app.listen(PORT,()=>{
+    console.log(`Server started at port : ${PORT}`);
     console.log(`Server started at port : ${process.env.PORT}`);
 })
 
