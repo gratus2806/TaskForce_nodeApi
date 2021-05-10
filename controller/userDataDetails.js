@@ -152,9 +152,120 @@ module.exports.loginctrl = (req, res) => {
                     phoneNo:"9987671819"
                 
                   }];
+                var doctor=[{
+                    name:"Dr.Shirish Sanjivani Hosp",
+                    phoneNo:"9890077427"
+                  
+                  },{
+                    name:"Dr. Pramod Sasalekar Bangli",
+                    phoneNo:"9823301880"
+                  
+                  },{
+                    name:"Dr.D.S.Saksena",
+                    phoneNo:"02502470331"
+                  
+                  },{
+                    name:"Dr.Anuj Platinum Hosp",
+                    phoneNo:"9320835502"
+                  
+                  },{
+                    name:"Dr.D.S.Saksena",
+                    phoneNo:"02502470331"
+                  
+                  },{
+                    name:"Dr.Jagdish Samant",
+                    phoneNo:"02502587389"
+                  
+                  }];
+                
+                var  covidTest=[{
+                    name:"विजयी नगर तुळुणज रुग्णालय",
+                    phoneNo:"9923249646"
+                  },{
+                    name:"सर डी.एम पेटिट वसई ",
+                    phoneNo:"8793750339"
+                  }];
+                
+                var  ambulance=[{
+                    name:"Viva Charitable Trust",
+                    phoneNo:"02502502421"
+                  
+                  },{
+                    name:"Arihanth Mitra Mandal",
+                    phoneNo:"02502502579"
+                  
+                  },{
+                    name:"Sanjeevini Hospital 1",
+                    phoneNo:"02502404264"
+                  
+                  },{
+                    name:"Sanjeevini Hospital 2",
+                    phoneNo:"02502402579"
+                  
+                  },{
+                    name:"Janaseva Trust Nallasopara ",
+                    phoneNo:"02502334780"
+                  
+                  },{
+                    name:"Shivseva Trust",
+                    phoneNo:"985000299"
+                  
+                  },{
+                    name:"VVCMC Department Office",
+                    phoneNo:"9326470163"
+                  
+                  },{
+                    name:"Cardinal Gracious Memo Hospital",
+                    phoneNo:"02502324220"
+                  
+                  },{
+                    name:"Cardinal Gracious Memo Hospital",
+                    phoneNo:"02502322686"
+                  
+                  },{
+                    name:"Sai Sanjivani cardiac Ambulance",
+                    phoneNo:"9220569182"
+                  
+                  }];
+                var bloodBank=[{
+                    name:"Sanjivani Hospital Blood Bank 1",
+                    phoneNo:"02502502229"
+                  },{
+                    name:"Sanjivani Hospital Blood Bank 2",
+                    phoneNo:"02502502284"
+                  },{
+                    name:"Vijayi Blood Bank 1",
+                    phoneNo:" 02506450250"
+                  },{
+                    name:"Vijayi Blood Bank 2",
+                    phoneNo:"02502321050"
+                  },{
+                    name:"Sarala Blood Bank 1",
+                    phoneNo:"02502332684"
+                  },{
+                    name:"Sarala Blood Bank 2",
+                    phoneNo:"02502349950"
+                  }]   
 
-
-                return res.send({status : true,userDetails,nandakhal,agashi,sherlai,rajodi,nanbhat,bolinj,umrale,mardes,gomasali,gass,nirmal,bhaugaon})
+                return res.send({status : true,
+                  userDetails,
+                  nandakhal,
+                  agashi,
+                  sherlai,
+                  rajodi,
+                  nanbhat,
+                  bolinj,
+                  umrale,
+                  mardes,
+                  gomasali,
+                  gass,
+                  nirmal,
+                  bhaugaon,
+                  doctor,
+                  covidTest,
+                  ambulance,
+                  bloodBank
+                })
             }  
         } else{
             return res.send({status : false})
