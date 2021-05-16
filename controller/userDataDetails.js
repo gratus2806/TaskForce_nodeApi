@@ -298,3 +298,37 @@ module.exports.userReg = (req, res) => {
     
     // return res.send({status : true})
 }
+module.exports.noticectrl = (req, res) => {
+  var datetime = new Date();
+  // console.log(datetime.toISOString().slice(0,10));
+
+  var tFNotice=[{
+    showNoticeDive:false,
+    title:"List of Vaccination Centers",
+    body:[{
+      srNo:'1',
+      name:'Virar RH',
+      availiblity:'Tuesday-Wednesday',
+      timeSlot:'9AM-6PM',
+      vaccineSlots:'200',
+      date:datetime.toISOString().slice(0,10)
+    },{
+      srNo:'2',
+      name:'Bolinj Isolation',
+      availiblity:'Tuesday-Wednesday',
+      timeSlot:'9AM-6PM',
+      vaccineSlots:'200',
+      date:datetime.toISOString().slice(0,10)
+    },{
+      srNo:'3',
+      name:'Umrale PHC',
+      availiblity:'Tuesday-Wednesday',
+      timeSlot:'9AM-6PM',
+      vaccineSlots:'200',
+      date:datetime.toISOString().slice(0,10)
+    }],
+    
+  }];
+  return res.send({status : true,tFNotice })
+
+}
