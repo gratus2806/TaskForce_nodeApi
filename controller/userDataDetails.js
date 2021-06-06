@@ -5,8 +5,8 @@ module.exports.loginctrl = (req, res) => {
     console.log("payload",payload)
     
     userAuth.find({
-      "Secret Code":payload.secNo,
-      "Mobile Number":payload.mobNO 
+      "Secret Code":parseInt(payload.secNo, 10),
+      "Mobile Number":parseInt(payload.mobNO, 10) 
     })
     .then((userAuth)=>{
       console.log("userAuth",userAuth)
