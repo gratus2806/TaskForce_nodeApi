@@ -3,15 +3,38 @@ const userAuth = require('../models/userData');
 module.exports.loginctrl = (req, res) => {
     const payload = req.body;
     console.log("payload",payload)
-    
-    userAuth.find({
-      "Secret Code":parseInt(payload.secNo, 10),
+    if(!!payload.secNo){
+      userAuth.find({
+        "Secret Code":parseInt(payload.secNo, 10),
+      })
+      .then((userAuth)=>{
+        console.log("userAuth",userAuth)
+          if(userAuth!=""){
+              console.log("userAuth",userAuth)
+              return res.send({status : true})
+            } else{
+                return res.send({status : false})
+            }
+        })
+    }else{
+      userAuth.find({
       "Mobile Number":parseInt(payload.mobNO, 10) 
-    })
-    .then((userAuth)=>{
-      console.log("userAuth",userAuth)
-        if(userAuth!=""){
-            console.log("userAuth",userAuth)
+      })
+      .then((userAuth)=>{
+        console.log("userAuth",userAuth)
+          if(userAuth!=""){
+              console.log("userAuth",userAuth)
+              return res.send({status : true})
+            } else{
+                return res.send({status : false})
+            }
+        })
+    }
+    
+    // .then((userAuth)=>{
+    //   console.log("userAuth",userAuth)
+    //     if(userAuth!=""){
+    //         console.log("userAuth",userAuth)
             // if(userAuth[0].userPhone==payload.userPhone && userAuth[0].password==payload.Password){
             //     var userDetails={
             //         status: userAuth[0].status,
@@ -268,11 +291,11 @@ module.exports.loginctrl = (req, res) => {
             //       // bloodBank
             //     })
             // }  
-            return res.send({status : true})
-        } else{
-            return res.send({status : false})
-        }
-    })
+    //         return res.send({status : true})
+    //     } else{
+    //         return res.send({status : false})
+    //     }
+    // })
     // return res.send({status : true})
 }
 
