@@ -8,13 +8,13 @@ const AuthenticationDetails=new mongoose.Schema({
     "Child Full Name": { type: String },
     Age:{ type: String },
     "Parent Full Name":{ type: String },
-    "Mobile Number":{ type: Int16Array },
+    "Mobile Number":{ type: Number },
     Village:{ type: String },
     Parish:{type: String },
     Gender:{ type: String },
     "Any History Of Allergies":{ type: String },
     "Dose 1":{ type: String },
-    "Secret Code":{type: Int16Array},
+    "Secret Code":{type: Number},
     createdAt: { type: Date, default: Date.now }
 })
 
