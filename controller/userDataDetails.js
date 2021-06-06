@@ -280,12 +280,23 @@ module.exports.userReg = (req, res) => {
     
     let newRecord = new userAuth({
         userId: Math.floor(10000000000 + Math.random() * 90000000000),
-        status: '1',
-        password:payload.userPassword,
-        username:payload.userFullName,
-        userVillage:payload.userVillage,
-        userParish:payload.userParish,
-        userPhone:payload.userPhoneNumber,
+        // status: '1',
+        // password:payload.userPassword,
+        // username:payload.userFullName,
+        // userVillage:payload.userVillage,
+        // userParish:payload.userParish,
+        // userPhone:payload.userPhoneNumber,
+        "Child Full Name": payload.childName,
+        Age:payload.Age,
+        "Parent Full Name":payload.parentName,
+        "Mobile Number":payload.mobileNo,
+        Village:payload.Village,
+        Parish:payload.Parish,
+        Gender:payload.Gender,
+        "Any History Of Allergies":payload.selectedHistory,
+        "Dose 1":payload.selectedDose,
+        "Secret Code":payload.SecretCode,
+        createdAt: { type: Date, default: Date.now }
     })
     return newRecord.save()
     .then((userAuth)=>{
