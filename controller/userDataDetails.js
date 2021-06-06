@@ -307,7 +307,7 @@ module.exports.userReg = (req, res) => {
         }
     })
     
-    // return res.send({status : true})
+    return res.send({status : true})
 }
 module.exports.noticectrl = (req, res) => {
   var datetime = new Date();
