@@ -9,6 +9,7 @@ module.exports.loginctrl = (req, res) => {
       "Mobile Number":payload.mobNO 
     })
     .then((userAuth)=>{
+      console.log("userAuth",userAuth)
         if(userAuth!=""){
             console.log("userAuth",userAuth)
             // if(userAuth[0].userPhone==payload.userPhone && userAuth[0].password==payload.Password){
