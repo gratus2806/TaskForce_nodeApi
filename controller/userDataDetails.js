@@ -5,26 +5,26 @@ module.exports.loginctrl = (req, res) => {
     console.log("payload",payload)
     if(!!payload.secNo){
       userAuth.find({
-        "Secret Code":parseInt(payload.secNo, 10),
+        SecretCode:parseInt(payload.secNo, 10),
       })
       .then((userAuth)=>{
         console.log("userAuth",userAuth)
           if(userAuth!=""){
               console.log("userAuth",userAuth)
-              return res.send({status : true})
+              return res.send({status : true,parishName:userAuth[0].Parish})
             } else{
                 return res.send({status : false})
             }
         })
     }else{
       userAuth.find({
-      "Mobile Number":parseInt(payload.mobNO, 10) 
+        mobileNo:parseInt(payload.mobNO, 10) 
       })
       .then((userAuth)=>{
-        console.log("userAuth",userAuth)
+        
           if(userAuth!=""){
-              console.log("userAuth",userAuth)
-              return res.send({status : true})
+              // console.log("userAuth",userAuth['Parish'])
+              return res.send({status : true,parishName:userAuth[0].Parish})
             } else{
                 return res.send({status : false})
             }
@@ -298,41 +298,60 @@ module.exports.loginctrl = (req, res) => {
     // })
     // return res.send({status : true})
 }
+module.exports.getUser_detailsCtrl= (req, res) => {
+  userAuth.find({})
+  .then((userAuth)=>{
+    console.log("userAuth",userAuth)
+    return res.send({userAuth})
+  })
+}
 
 module.exports.userReg = (req, res) => {
     const payload = req.body;
     console.log("payload",payload)
+    // userAuth.find({
+    //   "Child Full Name":payload.childName,
+    // })
+    // .then((userAuth)=>{
+       
+    //     if(userAuth!=""){
+    //       console.log("userAuth if",userAuth)
+    //         return res.send({status : false,dataAvailableStatus:true})
+    //       } else{
+            console.log("userAuth else",userAuth)
+            let newRecord = new userAuth({
+              userId: Math.floor(10000000000 + Math.random() * 90000000000),
+              // status: '1',
+              // password:payload.userPassword,
+              // username:payload.userFullName,
+              // userVillage:payload.userVillage,
+              // userParish:payload.userParish,
+              // userPhone:payload.userPhoneNumber,
+              chieldFullName: payload.childName,
+              Age:payload.Age,
+              parentFullName:payload.parentName,
+              mobileNo:payload.mobileNo,
+              Village:payload.Village,
+              Parish:payload.Parish,
+              Gender:payload.Gender,
+              anyHistoryOfAllergies:payload.selectedHistory,
+              Dose1:payload.selectedDose,
+              SecretCode:payload.SecretCode
+              
+          })
+          return newRecord.save()
+          .then((userAuth)=>{
+              if(!!userAuth){
+                  return res.send({status : true })
+              } else{
+                  return res.send({status : false })
+              }
+          })
+          
+          return res.send({status : true})
+      //     }
+      // })
     
-    let newRecord = new userAuth({
-        userId: Math.floor(10000000000 + Math.random() * 90000000000),
-        // status: '1',
-        // password:payload.userPassword,
-        // username:payload.userFullName,
-        // userVillage:payload.userVillage,
-        // userParish:payload.userParish,
-        // userPhone:payload.userPhoneNumber,
-        "Child Full Name": payload.childName,
-        Age:payload.Age,
-        "Parent Full Name":payload.parentName,
-        "Mobile Number":payload.mobileNo,
-        Village:payload.Village,
-        Parish:payload.Parish,
-        Gender:payload.Gender,
-        "Any History Of Allergies":payload.selectedHistory,
-        "Dose 1":payload.selectedDose,
-        "Secret Code":payload.SecretCode
-        
-    })
-    return newRecord.save()
-    .then((userAuth)=>{
-        if(!!userAuth){
-            return res.send({status : true })
-        } else{
-            return res.send({status : false })
-        }
-    })
-    
-    return res.send({status : true})
 }
 module.exports.noticectrl = (req, res) => {
   var datetime = new Date();

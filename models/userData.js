@@ -5,16 +5,16 @@ const mongoose = require('mongoose');
 
 const AuthenticationDetails=new mongoose.Schema({
     userId: { type: String },
-    "Child Full Name": { type: String },
+    chieldFullName: { type: String },
     Age:{ type: String },
-    "Parent Full Name":{ type: String },
-    "Mobile Number":{ type: Number },
+    parentFullName:{ type: String },
+    mobileNo:{ type: Number },
     Village:{ type: String },
     Parish:{type: String },
     Gender:{ type: String },
-    "Any History Of Allergies":{ type: String },
-    "Dose 1":{ type: String },
-    "Secret Code":{type: Number},
+    anyHistoryOfAllergies:{ type: String },
+    Dose1:{ type: String },
+    SecretCode:{type: Number},
     createdAt: { type: Date, default: Date.now }
 })
 
