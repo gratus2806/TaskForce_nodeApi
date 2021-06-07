@@ -7,12 +7,12 @@ const bodyParser = require('body-parser');
 
 require('dotenv').config();
 const PORT = process.env.PORT || 3000;
-
-const cors = require('cors');
-app.use(cors());
-
 const rtsIndex = require('./routes/userAuth');
 var _ = require('underscore');
+const cors = require('cors');
+
+
+
 
 function allowCrossDomain(req, res, next) {
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
@@ -30,65 +30,65 @@ function allowCrossDomain(req, res, next) {
 } 
 
 
-
-app.use(allowCrossDomain);
+app.use(cors());
+// app.use(allowCrossDomain);
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cookieParser());
-app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next();
-});
+// app.use(function(req, res, next) {
+//     res.header("Access-Control-Allow-Origin", "*");
+//     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+//     next();
+// });
 
-app.use(cors({ origin: '*' }));
-app.options('*', cors());
+// app.use(cors({ origin: '*' }));
+// app.options('*', cors());
 
-app.use(function(req, res, next) { 
+// app.use(function(req, res, next) { 
 
-    // Website you wish to allow to connect
-    res.setHeader('Access-Control-Allow-Origin', '*');
+//     // Website you wish to allow to connect
+//     res.setHeader('Access-Control-Allow-Origin', '*');
 
-    // Request methods you wish to allow
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+//     // Request methods you wish to allow
+//     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
 
-    // Request headers you wish to allow
-    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+//     // Request headers you wish to allow
+//     res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
 
-    // Set to true if you need the website to include cookies in the requests sent
-    // to the API (e.g. in case you use sessions)
-    res.setHeader('Access-Control-Allow-Credentials', true);
+//     // Set to true if you need the website to include cookies in the requests sent
+//     // to the API (e.g. in case you use sessions)
+//     res.setHeader('Access-Control-Allow-Credentials', true);
 
-    // Pass to next layer of middleware
-    next();
-});
+//     // Pass to next layer of middleware
+//     next();
+// });
 
 
-app.use(function(req, res, next) {
-    var oneof = false;
-    if (req.headers.origin) {
-        res.header('Access-Control-Allow-Origin', req.headers.origin);
-        oneof = true;
-    }
-    if (req.headers['access-control-request-method']) {
-        res.header('Access-Control-Allow-Methods', req.headers['access-control-request-method']);
-        oneof = true;
-    }
-    if (req.headers['access-control-request-headers']) {
-        res.header('Access-Control-Allow-Headers', req.headers['access-control-request-headers']);
-        oneof = true;
-    }
-    if (oneof) {
-        res.header('Access-Control-Max-Age', 60 * 60 * 24 * 365);
-    }
+// app.use(function(req, res, next) {
+//     var oneof = false;
+//     if (req.headers.origin) {
+//         res.header('Access-Control-Allow-Origin', req.headers.origin);
+//         oneof = true;
+//     }
+//     if (req.headers['access-control-request-method']) {
+//         res.header('Access-Control-Allow-Methods', req.headers['access-control-request-method']);
+//         oneof = true;
+//     }
+//     if (req.headers['access-control-request-headers']) {
+//         res.header('Access-Control-Allow-Headers', req.headers['access-control-request-headers']);
+//         oneof = true;
+//     }
+//     if (oneof) {
+//         res.header('Access-Control-Max-Age', 60 * 60 * 24 * 365);
+//     }
 
-    // intercept OPTIONS method
-    if (oneof && req.method == 'OPTIONS') {
-        res.send(200);
-    } else {
-        next();
-    }
-});
+//     // intercept OPTIONS method
+//     if (oneof && req.method == 'OPTIONS') {
+//         res.send(200);
+//     } else {
+//         next();
+//     }
+// });
 
 app.use(express.static('dist'));
 app.use('/api', rtsIndex);
