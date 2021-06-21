@@ -15,6 +15,7 @@ const AuthenticationDetails=new mongoose.Schema({
     anyHistoryOfAllergies:{ type: String },
     Dose1:{ type: String },
     SecretCode:{type: Number},
+    dose1Date:{type: String},
     createdAt: { type: Date, default: Date.now }
 })
 

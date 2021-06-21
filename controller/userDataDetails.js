@@ -52,7 +52,8 @@ module.exports.userReg = (req, res) => {
     Gender:payload.Gender,
     anyHistoryOfAllergies:payload.selectedHistory,
     Dose1:payload.selectedDose,
-    SecretCode:payload.SecretCode
+    SecretCode:payload.SecretCode,
+    dose1Date:payload.dose1Date
   })
   return newRecord.save()
   .then((userAuth)=>{
