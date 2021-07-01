@@ -1,4 +1,63 @@
 const userAuth = require('../models/userData');
+const LinkDetails = require('../models/linkData');
+
+const express = require('express');
+const mongoose = require('mongoose');
+const app = express();
+
+
+
+require('dotenv').config();
+
+
+
+module.exports.getLink_details= (req, res) => {
+  LinkDetails.find({})
+  .then((LinkDetails)=>{
+    console.log("LinkDetails",LinkDetails)
+    return res.send({LinkDetails})
+  })
+}
+module.exports.linkSaveVerify= (req, res) => {
+  const payload = req.body;
+  console.log("payload",payload)
+  mongoose.connect("mongodb+srv://Gratus2806:gratus2806@cluster0.4bkx2.mongodb.net/TaskForce?retryWrites=true&w=majority",
+{useNewUrlParser:true,useUnifiedTopology: true}
+).then(()=>{
+    console.log("connected to mongo db Atlas")
+    return LinkDetails.findOneAndUpdate({linkId:"grt"}, 
+    {
+        linkData: payload.linkActive
+    },{new: true}, (err, doc) => {
+        if (err) {
+        console.log("Something wrong when updating data!",err);
+        }
+        var result = Object.keys(doc).map(function(key) {
+            return [doc[key]]
+        })
+        console.log("results>>>>>>",result)
+        return res.send({status : true,result})                
+    });
+      
+}).catch(error=>{
+    console.log("Something went Wrong",error)
+})
+
+  
+  // let newRecord = new LinkDetails({
+  //   linkData:payload.linkActive,
+  //   linkId:"grt"
+  // })
+  // return newRecord.save()
+  // .then((LinkDetails)=>{
+  //     if(!!LinkDetails){
+  //         return res.send({status : true })
+  //     } else{
+  //         return res.send({status : false })
+  //     }
+  // })
+  // return res.send({status : true})
+}
 
 module.exports.loginctrl = (req, res) => {
   const payload = req.body;

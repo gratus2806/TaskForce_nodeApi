@@ -10,6 +10,7 @@ const PORT = process.env.PORT || 3000;
 const rtsIndex = require('./routes/userAuth');
 var _ = require('underscore');
 const cors = require('cors');
+const linkDetails = require('../TaskForce_nodeApi/models/linkData');
 
 
 
@@ -108,6 +109,8 @@ mongoose.connect("mongodb+srv://Gratus2806:gratus2806@cluster0.4bkx2.mongodb.net
 {useNewUrlParser:true,useUnifiedTopology: true}
 ).then(()=>{
     console.log("connected to mongo db Atlas")
+        
+      
 }).catch(error=>{
     console.log("Something went Wrong",error)
 })
